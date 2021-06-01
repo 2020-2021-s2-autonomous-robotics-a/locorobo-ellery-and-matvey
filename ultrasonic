@@ -1,0 +1,21 @@
+robot = get_robot(robots, "lr 44:69")
+
+    robot.connect()
+    robot.activate_motors()
+    robot.enable_sensor(Data.ULTRASONIC, True)
+    robot.enable_sensor(Data.ACCELEROMETER, True)
+
+    LocoRobo.wait(0.2)
+    
+    distance = robot.get_sensor_value(Data.ULTRASONIC)
+    acc_data = robot.get_sensor_value(Data.ACCELEROMETER)
+    print("X Axis (g):", acc_data['x'])
+    print("Y Axis (g):", acc_data['y'])
+    print("Z Axis (g):", acc_data['z'])
+    
+    print(distance, "cm")
+    
+    LocoRobo.wait(3)
+
+    robot.deactivate_motors()
+    robot.disconnect()
